@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Transfer App</title>
+</head>
+<body>
+  <h1><center>Bank Transfer App</center></h1>
+    <script>
+        let bankAccount = {
+            balance: 1000 
+        };
+        function transferMoney() {
+            let continueTransfer = true;
+
+            while (continueTransfer) {
+                let amount = parseFloat(prompt("Enter the amount you want to transfer:"));
+                if (isNaN(amount) || amount <= 0) {
+                    alert("Invalid amount. Please enter a valid number greater than zero.");
+                    continue;
+                }
+
+                if (amount > bankAccount.balance) {
+                    alert("Insufficient funds. Transfer amount exceeds your account balance.");
+                    continue; 
+                }
+                let confirmTransfer = confirm(`Transfer $${amount} to another bank?`);
+                if (confirmTransfer) {
+                    bankAccount.balance -= amount;
+                    alert(`Transfer successful! Remaining balance: $${bankAccount.balance}`);
+                } else {
+              
+                    alert("Transfer canceled.");
+                }
+
+                continueTransfer = confirm("Do you want to transfer more money?");
+            }
+
+            alert("Thank you for using our bank transfer app!");
+        }
+
+        transferMoney();
+    </script>
+</body>
+</html>
